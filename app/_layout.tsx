@@ -14,8 +14,7 @@ import * as SecureStore from 'expo-secure-store'
 import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
 import listingData from '@/assets/data/cam-listings.json'
 
-// const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY  
-const CLERK_PUBLISHABLE_KEY = 'pk_test_YWxsb3dlZC1oZWRnZWhvZy01NS5jbGVyay5hY2NvdW50cy5kZXYk'
+const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY 
 
 const tokenCache = {
   async getToken(key: string) {
