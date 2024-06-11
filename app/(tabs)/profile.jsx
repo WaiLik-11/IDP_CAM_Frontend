@@ -6,7 +6,7 @@ import { icons } from "../../constants";
 import useAppwrite from "../../lib/useAppwrite";
 import { getUserPosts, signOut } from "../../lib/appwrite";
 import { useGlobalContext } from "../../context/GlobalProvider";
-import { InfoBox } from '../../components/InfoBox'
+
 
 const Profile = () => {
   const { user, setUser, setIsLoggedIn } = useGlobalContext();

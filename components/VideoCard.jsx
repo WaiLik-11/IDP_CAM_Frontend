@@ -1,30 +1,26 @@
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React from "react";
 import { icons } from "../constants";
-import { Link, router } from "expo-router";
-import { resizeMode, Video } from "expo-av";
-import { WebView } from "react-native-webview";
+import { router } from "expo-router";
+import axios from "axios";
 
 const VideoCard = ({
   video: {
     title,
     $id,
     thumbnail,
-    camVideo,
+    camVideoStream,
+    camURL,
     owner: { username, avatar },
   },
 }) => {
-
-  const laptopIp = '192.168.1.104';
-  const flaskAppUrl = `http://${laptopIp}:5000/webcam`;
-
-
+ 
   const handlePress = () => {
     router.push({
       pathname: `/cameras/${$id}`,
       params: {
         cameraName: title,
-        streamUrl: flaskAppUrl,
+        streamUrl: camURL,
       },
     });
   };
@@ -47,33 +43,26 @@ const VideoCard = ({
             >
               {title}
             </Text>
-            <Text
-              className="text-xs text-gray-100 font-pregular"
-              numberOfLines={1}
-            >
-              {username}
-            </Text>
           </View>
         </View>
-
         <View className="pt-2">
           <Image source={icons.menu} className="w-5 h-5" resizeMode="contain" />
         </View>
       </View>
-
       <TouchableOpacity
-          activeOpacity={0.7}
-          className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
-          onPress={handlePress}
-        >
-          <Image
-            source={{ uri: thumbnail }}
-            className="w-full h-full rounded-xl mt-3"
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
+        activeOpacity={0.7}
+        className="w-full h-60 rounded-xl mt-3 relative justify-center items-center"
+        onPress={handlePress}
+      >
+        <Image
+          source={{ uri: thumbnail }}
+          className="w-full h-full rounded-xl mt-3"
+          resizeMode="cover"
+        />
+      </TouchableOpacity>
     </View>
   );
 };
 
 export default VideoCard;
+

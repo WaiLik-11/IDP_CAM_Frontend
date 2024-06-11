@@ -1,13 +1,17 @@
 import { View, Text, FlatList, Image } from 'react-native';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import WebView from 'react-native-webview';
+import * as Notifications from "expo-notifications";
+import { getDatabase, ref, onValue } from "firebase/database";
+import { initializeApp } from "firebase/app";
+import { registerForPushNotificationsAsync, setupNotificationListener } from '../../lib/notifications';
 
 
 const CameraPage = () => {
     const { cameraName, streamUrl } = useLocalSearchParams();
-
+    
   return (
     <SafeAreaView className="bg-primary h-full">
       <View className="flex-row justify-between items-center p-4">
